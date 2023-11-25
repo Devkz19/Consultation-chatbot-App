@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Consultation Categories - Consultation App</title>
+</head>
+<body>
+    <h1>Consultation Categories</h1>
+
+    <div id="categories-container"></div>
+
+    <footer>
+        <p>&copy; 2023 Consultation App. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+    // Simulate consultation categories (Replace this with actual data)
+    const categories = [
+        'Medical Consultation',
+        'Legal Advice',
+        'Financial Planning',
+        'Career Counseling',
+        'Technical Support',
+        // Add more categories as needed
+    ];
+
+    const categoriesContainer = document.getElementById('categories-container');
+
+    // Display consultation categories
+    categories.forEach(category => {
+        const categoryElement = document.createElement('div');
+        categoryElement.classList.add('category');
+        categoryElement.innerText = category;
+        categoriesContainer.appendChild(categoryElement);
+    });
+});
+
+    </script>
+</body>
+</html>

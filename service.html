@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Appointment Booking Chatbot</title>
+</head>
+<body>
+    <h1>Appointment Booking Service</h1>
+    <div id="chat-container">
+        <div id="chat-messages"></div>
+        <input type="text" id="user-input" placeholder="Type your Name">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 Consultation App. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function sendMessage() {
+    const userInput = document.getElementById('user-input').value;
+    const chatMessages = document.getElementById('chat-messages');
+
+    // Display user message
+    displayMessage(userInput, 'user');
+
+    // Simulate chatbot response (Replace this with actual chatbot logic)
+    const chatbotResponse = simulateChatbotResponse(userInput);
+
+    // Display chatbot response
+    displayMessage(chatbotResponse, 'chatbot');
+
+    // Clear user input
+    document.getElementById('user-input').value = '';
+}
+
+function displayMessage(message, sender) {
+    const chatMessages = document.getElementById('chat-messages');
+    const messageElement = document.createElement('div');
+    messageElement.classList.add(sender);
+    messageElement.innerText = message;
+    chatMessages.appendChild(messageElement);
+
+    // Scroll to the bottom of the chat container
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function simulateChatbotResponse(userInput) {
+    // Simulate chatbot response based on user input
+    // Replace this with your actual chatbot logic
+    return `Chatbot: Thank you for your message. I will help you book an appointment for ${userInput}.`;
+}
+
+    </script>
+</body>
+</html>

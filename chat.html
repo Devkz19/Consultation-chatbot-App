@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Real-time Chat - Consultation App</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.3/socket.io.js"></script>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <h1>Real-time Chat</h1>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <!-- Chat messages will be displayed here -->
+        </div>
+        <div class="chat-input">
+            <input type="text" id="messageInput" placeholder="Type your message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 Consultation App. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const socket = io.connect('http://' + document.domain + ':' + location.port);
+
+        function displayMessage(message, sender) {
+            const chatMessages = document.getElementById('chatMessages');
+            const messageElement = document.createElement('div');
+            messageElement.className = sender === 'user' ? 'user-message' : 'bot-message';
+            messageElement.innerHTML = `<strong>${sender === 'user' ? 'You' : 'Chatbot'}:</strong> ${message}`;
+            chatMessages.appendChild(messageElement);
+        }
+
+        function sendMessage() {
+            const messageInput = document.getElementById('messageInput');
+            const userMessage = messageInput.value.trim();
+
+            if (userMessage !== '') {
+                displayMessage(userMessage, 'user');
+
+                // Simulate a response from the chatbot (replace this with actual logic)
+                const botResponse = getBotResponse(userMessage);
+                displayMessage(botResponse, 'bot');
+
+                // Send user message to the server for broadcasting
+                socket.emit('message', { message: userMessage });
+
+                messageInput.value = '';
+            }
+        }
+
+        function getBotResponse(userMessage) {
+            // Replace this with actual chatbot logic (e.g., calling a backend API)
+            // Here, we'll just echo the user's message as a simple example
+            return `I received: "${userMessage}"`;
+        }
+
+        // Listen for messages from other users (broadcasted by the server)
+        socket.on('message', function (data) {
+            displayMessage(data.message, 'bot');
+        });
+
+        messageInput.addEventListener('keyup', function (event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html>

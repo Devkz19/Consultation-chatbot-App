@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Language Support - Consultation App</title>
+    <style>
+
+h1{
+    color: black;
+}
+    </style>
+</head>
+<body>
+    <h1>Language Support</h1>
+
+    <p style="color: black;">Select your preferred language:</p>
+    
+    <select id="languageSelector" onchange="changeLanguage()">
+        <option value="en">English</option>
+        <option value="gj">Gujarati</option>
+        <option value="hi">Hindi</option>
+        <option value="sp">Spainish</option> 
+        <option value="gr">Germar</option>
+    </select>
+
+    <div id="languageContent">
+        <!-- Language-specific content will be displayed here -->
+        <p id="welcomeMessage">Welcome to the Consultation App. Please choose your preferred language.</p>
+        <p id="question">How can we assist you today?</p>
+
+        <!-- Add the text box for user's question -->
+        <label for="userQuestion">Your Question:</label>
+        <input type="text" id="userQuestion" placeholder="Type your question here...">
+        <button onclick="submitQuestion()">Submit</button>
+    </div>
+
+    <footer color:#fff;>
+        <p>&copy; 2023 Consultation App. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function changeLanguage() {
+    const languageSelector = document.getElementById('languageSelector');
+    const selectedLanguage = languageSelector.value;
+    const languageContent = document.getElementById('languageContent');
+
+    function submitQuestion() {
+    const userQuestion = document.getElementById('userQuestion').value;
+    
+    // You can handle the user's question as needed
+    console.log('User Question:', userQuestion);
+}
+
+    switch (selectedLanguage) {
+        case 'en':
+            languageContent.innerHTML = '<p>Welcome to the Consultation App. Please choose your preferred language.</p>';
+            break;
+        case 'gj':
+            languageContent.innerHTML = '<p>કન્સલ્ટેશન એપમાં આપનું સ્વાગત છે. કૃપા કરીને તમારી પસંદગીની ભાષા પસંદ કરો. </p>';
+            break;
+        case 'hi':
+            languageContent.innerHTML = '<p>परामर्श ऐप में आपका स्वागत है। कृपया अपनी पसंदीदा भाषा चुनें.</p>';
+            break;
+        case 'sp':
+            languageContent.innerHTML = '<p>Bienvenido a la aplicación de consulta. Por favor elige tu idioma preferido.</p>';
+            break;
+        case 'gr':
+            languageContent.innerHTML = '<p>Willkommen in der Beratungs-App. Bitte wählen Sie Ihre bevorzugte Sprache.</p>';
+            break;    
+       
+        default:
+            languageContent.innerHTML = '<p>Welcome to the Consultation App. Please choose your preferred language.</p>';
+    }
+}
+
+    </script>
+</body>
+</html>
